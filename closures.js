@@ -11,19 +11,19 @@
 // Do not edit the code below.
 function outer() {
   var name = 'Tyler';
-  return function() {
+  return function () {
     return 'The original name was ' + name;
   };
 }
 // Do not edit the code above.
-  
+
 /* 
   Above you're given a function that returns another function which has a closure over the name variable.
   Invoke outer saving the return value into another variable called 'inner'.
 */
-  
+
 // Code Here
-const inner= outer();
+const inner = outer();
 
 inner();
 
@@ -64,9 +64,9 @@ callJake('435-555-9248')
 */
 
 //Code Here
-function makeCounter(){
-  var num= 0;
-  return function(){
+function makeCounter() {
+  var num = 0;
+  return function () {
     num++
     return num;
   }
@@ -74,11 +74,11 @@ function makeCounter(){
 
 
 //Uncomment this once you make your function
-  var count = makeCounter();
-  count(); // 1
-  count(); // 2
-  count(); // 3
-  count(); // 4
+var count = makeCounter();
+count(); // 1
+count(); // 2
+count(); // 3
+count(); // 4
 
 
 
@@ -97,11 +97,11 @@ function counterFactory(value) {
   // Code here.
 
   return {
-    inc: function(){
+    inc: function () {
       value++
       return value;
     },
-    dec: function(){
+    dec: function () {
       value--
       return value;
     }
@@ -125,11 +125,11 @@ counter.dec() // 12
   (Hint: don't forget to have a space between the firstname and lastname and a period at the end of the sentence.)
 */
 
-function motivation( firstname, lastname ) {
+function motivation(firstname, lastname) {
   var welcomeText = "You're doing awesome, keep it up";
 
   // code message function here.
-  return function(){
+  return function () {
     return welcomeText + " " + firstname + " " + lastname + ".";
   }
   //Uncommment this to return the value of your message function
@@ -147,14 +147,14 @@ var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up B
   Invoke this by calling module.publicMethod(); outside the module scope
 */
 
-var module = (function() {
+var module = (function () {
   var person = {
     name: "phillip",
     age: 29,
     location: "Utah"
   };
 
-  function privateMethod(){
+  function privateMethod() {
     return "Hi, I'm " + person.name + ", age " + person.age + " from " + person.location;
   }
 
@@ -162,7 +162,7 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
-    publicMethod: function(){
+    publicMethod: function () {
       return privateMethod();
     }
   };
@@ -186,22 +186,22 @@ function secretNumber() {
 
   return {
     // Code here
-      addToSecret: function(num){
-        secret += num;
-        return secret;
-      },
+    addToSecret: function (num) {
+      secret += num;
+      return secret;
+    },
 
-      takeAwayFromSecret: function(num){
-        secret -= num;
-        return secret;
-      }
+    takeAwayFromSecret: function (num) {
+      secret -= num;
+      return secret;
+    }
   };
 }
 
 
 
 ////////// PROBLEM 8 //////////
-  
+
 /*
   Here we have a for loop that will iterate as long as i is less than or equal to 5.
   What we need to do is console.log(i) so that it logs like so:
@@ -220,9 +220,13 @@ function secretNumber() {
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
-    }, i * 1000);
-  }
+    var count = i;
+    (function (log) {
+      setTimeout(function () {
+        console.log(log);
+      }, log * 1000);
+    })(count);
+  };
 }
+
 timeOutCounter();
